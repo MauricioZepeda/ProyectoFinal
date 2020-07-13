@@ -1,14 +1,18 @@
-import React, {Fragment} from 'react'; 
- 
-const ListaUsuarios = ({ usuarios }) => {   
+import React, {Fragment} from 'react';   
+import Usuario from './usuario.component'; 
+
+const ListaUsuarios = ({ usuarios }) => { 
+      
     return ( 
         <Fragment>
             <h1>usuarios registrados</h1>
             <ul className="list-group">
-             { usuarios.map(usuario => <li  className="list-group-item" key={usuario.id}>{usuario.name}</li>)}
+             { usuarios.map(usr => <Usuario key={usr.id} usuario={usr} />)}
             </ul>
         </Fragment> 
     );
 } 
+   
 
 export default ListaUsuarios;
+ 

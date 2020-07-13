@@ -1,8 +1,8 @@
-import { OBTENER_USUARIOS, AGREGAR_USAURIO, ACTUALIZAR_USAURIO, ELIMINAR_USUARIO, CARGANDO_USUARIOS } from '../types/usuario.types';
+import { OBTENER_USUARIOS, AGREGAR_USAURIO, ACTUALIZAR_USAURIO, ELIMINAR_USUARIO, LOADING_USUARIOS, SELECCIONA_USUARIO } from '../types/usuario.types';
 import axios from 'axios';
 
 export const obtenerUsuarios  = (dispatch) => {  
-  dispatch({  type: CARGANDO_USUARIOS })
+  dispatch({  type: LOADING_USUARIOS })
 
   axios.get(`https://jsonplaceholder.typicode.com/users`)
     .then(res => {  
@@ -13,5 +13,13 @@ export const obtenerUsuarios  = (dispatch) => {
     })  
 }
 
+export const seleccionaUsuario  = (dispatch, usuario) => {  
+  dispatch({  
+    type: SELECCIONA_USUARIO ,
+    payload: {
+      usuario  
+    }
+  }) 
+}
 
  

@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
-import { connect } from 'react-redux';
 
-import ListaUsuarios from '../../components/usuario/lista-usuarios.component';
+// REDUX
+import { connect } from 'react-redux';
 import { obtenerUsuarios } from '../../redux/actions/usuario.actions';
- 
+
+//COMPONENTES
+import ListaUsuarios from '../../components/usuario/lista-usuarios.component';
+import NuevoUsuario from '../../components/usuario/nuevo-usuario.component';
 import { SyncLoader } from 'react-spinners';
 
 const Usuario = ({usuarios, buscando, obtenerUsuarios}) => {  
@@ -17,10 +20,15 @@ const Usuario = ({usuarios, buscando, obtenerUsuarios}) => {
     
     return (        
         <section className="container">  
-            <div className="d-flex justify-content-center"> 
+            <div className="d-flex justify-content-between"> 
                 <div className="col-6"> 
-                    <ListaUsuarios usuarios={usuarios} />  
+                    <NuevoUsuario />  
                 </div>      
+                <div className="col-6"> 
+                    <ListaUsuarios 
+                        usuarios={usuarios}  
+                    />  
+                </div>  
             </div> 
         </section>  
     )
@@ -28,18 +36,18 @@ const Usuario = ({usuarios, buscando, obtenerUsuarios}) => {
  
 const mapStateToProps = (state) => {
     return { 
-        usuarios: state.usuario.usuarios,        
+        usuarios: state.usuario.usuarios,           
         buscando: state.usuario.buscando
     }
 }
   
 const mapDispatchToProps = (dispatch) => {
     return { 
-        obtenerUsuarios: () => obtenerUsuarios(dispatch)
+        obtenerUsuarios: ( ) => obtenerUsuarios(dispatch)
     }
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Usuario)
+)(Usuario);
