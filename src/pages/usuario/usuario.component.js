@@ -14,7 +14,7 @@ const Usuario = ({usuarios, buscando, obtenerUsuarios}) => {
         obtenerUsuarios()
     },[])
 
-    if(buscando){
+    if (buscando) {
         return  <div className="text-center pt-5"> <SyncLoader /> </div>
     }
     

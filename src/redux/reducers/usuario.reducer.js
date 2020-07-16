@@ -1,27 +1,42 @@
-import { OBTENER_USUARIOS, AGREGAR_USAURIO, ACTUALIZAR_USAURIO, ELIMINAR_USUARIO, LOADING_USUARIOS, SELECCIONA_USUARIO } from '../types/usuario.types';
-
+import UsuarioTypes from '../types/usuario.types';
+  
 const initialState = {
     usuarios: [ ],
-    usuarioSeleccionado: {},
-    buscando: false
+    usuarioSeleccionado: {  },
+    buscando: false,
+    error: ''
   }
  
 function usuario (state = initialState, action) {
-    switch (action.type
-      ) { 
-      case OBTENER_USUARIOS:
+    switch (action.type) { 
+      case UsuarioTypes.OBTENER_USUARIOS:
         return {
           ...state,
           usuarios: action.payload,
-          buscando: false
+          buscando: false,
+          error: ''
         }  
-        case LOADING_USUARIOS:
-          return {
-            ...state,
-            buscando: true,
-            usuarioSeleccionado: {}
-          }
-        case SELECCIONA_USUARIO:
+
+      case UsuarioTypes.LOADING_USUARIOS:
+        return {
+          ...state,
+          buscando: true,
+          usuarioSeleccionado: { }
+        }
+
+      case UsuarioTypes.SELECCIONA_USUARIO: 
+        return {
+          ...state,
+          usuarioSeleccionado: action.payload 
+        }
+
+      case UsuarioTypes.ERROR_USUARIO:
+        return {
+          ...state,
+          error: action.payload 
+        }
+
+        case UsuarioTypes.ACTUALIZAR_USUARIO:
           return {
             ...state,
             usuarioSeleccionado: action.payload 
