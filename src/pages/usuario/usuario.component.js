@@ -22,12 +22,12 @@ const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtene
     return (        
         <section className="container">  
             <div className="d-flex justify-content-between"> 
-                <div className="col-7"> 
+                <div className="col-6"> 
                     <ListaUsuarios
                         usuarios={usuarios}  
                     />  
                 </div>  
-                <div className="col-5"> 
+                <div className="col-6"> 
                 { verFormulario ? <FormularioUsuario /> : (usuarioSeleccionado.id !== '') ? <VerUsuario /> : "" }
                 </div>      
             </div> 

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';   
+import React from 'react';   
 import Usuario from './usuario.component'; 
  
 // REDUX
@@ -7,14 +7,21 @@ import { confeccionarUsuario } from '../../redux/actions/usuario.actions';
 
 const ListaUsuarios = ({usuarios, confeccionarUsuario}) => { 
     return ( 
-        <Fragment> 
-            <h1 className="pt-4">  Usuarios registrados</h1>
-            <button className="btn btn-success" onClick={confeccionarUsuario}>Crear usuario</button>
- 
-            <div className="list-group rounded shadow">
+        <div className="container"> 
+
+            <div className="row mt-5 pb-3">
+                <div className="col-10">
+                    <h1><i className="fas fa-users pr-2"></i>Usuarios ingresados</h1>    
+                </div>
+                <div className="col-2 text-right pt-1">
+                    <button className="btn btn-success shadow" onClick={confeccionarUsuario}>Nuevo</button>
+                </div>
+            </div>
+    
+            <div className="list-group shadow">
                 { usuarios.map(usr => <Usuario key={usr.id} usuario={usr} />)} 
             </div> 
-        </Fragment> 
+        </div> 
     );
 } 
    

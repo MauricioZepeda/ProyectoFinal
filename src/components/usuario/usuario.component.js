@@ -22,7 +22,7 @@ const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario }) => {
                 <div className="col-9">
                     <div className="row">
                         <div className="col-12">
-                            <h2>{usuario.nombre} {usuario.apellido}</h2> 
+                            <h4>{usuario.nombre} {usuario.apellido}</h4> 
                         </div>
                     </div>
                     <div className="row">

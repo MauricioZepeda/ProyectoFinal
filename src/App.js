@@ -4,8 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 //Pages 
 import Usuario from './pages/usuario/usuario.component';
 
-import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   return (
