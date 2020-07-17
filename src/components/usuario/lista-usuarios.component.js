@@ -7,13 +7,13 @@ import { confeccionarUsuario } from '../../redux/actions/usuario.actions';
 
 const ListaUsuarios = ({usuarios, confeccionarUsuario}) => { 
     return ( 
-        <Fragment>
-            <h1 className="pt-4">Usuarios registrados</h1>
+        <Fragment> 
+            <h1 className="pt-4">  Usuarios registrados</h1>
             <button className="btn btn-success" onClick={confeccionarUsuario}>Crear usuario</button>
-
-            <ul className="list-group">
-             { usuarios.map(usr => <Usuario key={usr.id} usuario={usr} />)}
-            </ul>
+ 
+            <div className="list-group rounded shadow">
+                { usuarios.map(usr => <Usuario key={usr.id} usuario={usr} />)} 
+            </div> 
         </Fragment> 
     );
 } 

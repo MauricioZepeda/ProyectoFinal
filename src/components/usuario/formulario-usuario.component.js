@@ -6,27 +6,26 @@ import { crearUsuario, actualizarUsuario, seleccionarUsuario } from '../../redux
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 
-const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuario , seleccionarUsuario}) => { 
+const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuario , seleccionarUsuario }) => { 
     const [ id, setId ] = useState('');
     const [ nombre, setNombre ] = useState('');
     const [ apellido, setApellido ] = useState('');
     const [ pais, setPais ] = useState('');
     const [ ciudad, setCiudad ] = useState('');
 
-    useEffect(()=>{   
-        const id = (usuarioSeleccionado.usuario) ? usuarioSeleccionado.usuario.id : "";
-        const nombre = (usuarioSeleccionado.usuario) ? usuarioSeleccionado.usuario.nombre : "";
-        const apellido = (usuarioSeleccionado.usuario) ? usuarioSeleccionado.usuario.apellido : ""; 
-        const pais = (usuarioSeleccionado.usuario) ? usuarioSeleccionado.usuario.pais : ""; 
-        const ciudad = (usuarioSeleccionado.usuario) ? usuarioSeleccionado.usuario.ciudad : "";  
-      
-        setId(id);
-        setNombre(nombre);
-        setApellido(apellido);
-        setPais(pais);
-        setCiudad(ciudad);  
+    useEffect(()=>{    
+        establecerUsuario(usuarioSeleccionado);
     },[usuarioSeleccionado])
     
+    const establecerUsuario = (usuarioDesplegar) => { 
+            const { id, nombre, apellido, pais, ciudad } = usuarioDesplegar; 
+            setId(id);
+            setNombre(nombre);
+            setApellido(apellido);
+            setPais(pais);
+            setCiudad(ciudad);   
+    }
+
     const formik = useFormik({
         initialValues: {
             nombre: nombre,
@@ -59,14 +58,8 @@ const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuari
         }
     });
 
-    const handlerCancelar = () => {
-        // formik.handleReset();
-        // setId('');
-        // setNombre('');
-        // setApellido(''); 
-        // setPais('');
-        // setCiudad('');
-        seleccionarUsuario(usuarioSeleccionado.usuario);
+    const handlerCancelar = () => { 
+        seleccionarUsuario(usuarioSeleccionado);
     }
 
     return ( 

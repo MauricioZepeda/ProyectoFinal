@@ -8,11 +8,11 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
     return ( 
         <Fragment>
             <h1>Ver usuario</h1>
-            <h2> { usuarioSeleccionado.usuario.nombre }</h2> 
-            <h2> { usuarioSeleccionado.usuario.apellido }</h2>
+            <h2> { usuarioSeleccionado.nombre }</h2> 
+            <h2> { usuarioSeleccionado.apellido }</h2>
 
             <button className="btn btn-info mx-3" onClick={()=> editarUsuario(usuarioSeleccionado) }>Editar</button>
-            <button className="btn btn-danger mx-3" onClick={()=> eliminarUsuario(usuarioSeleccionado.usuario.id) }>Eliminar</button>
+            <button className="btn btn-danger mx-3" onClick={()=> eliminarUsuario(usuarioSeleccionado.id) }>Eliminar</button>
        </Fragment>
     );
 }

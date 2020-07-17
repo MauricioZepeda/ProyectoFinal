@@ -14,7 +14,7 @@ const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtene
     useEffect(()=>{
         obtenerUsuarios()
     },[])
-
+    
     if (buscando) {
         return  <div className="text-center pt-5"> <SyncLoader /> </div>
     }
@@ -22,13 +22,13 @@ const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtene
     return (        
         <section className="container">  
             <div className="d-flex justify-content-between"> 
-                <div className="col-6"> 
+                <div className="col-7"> 
                     <ListaUsuarios
                         usuarios={usuarios}  
                     />  
                 </div>  
-                <div className="col-6"> 
-                { verFormulario ? <FormularioUsuario /> : usuarioSeleccionado.usuario ? <VerUsuario />: "" }
+                <div className="col-5"> 
+                { verFormulario ? <FormularioUsuario /> : (usuarioSeleccionado.id !== '') ? <VerUsuario /> : "" }
                 </div>      
             </div> 
         </section>  

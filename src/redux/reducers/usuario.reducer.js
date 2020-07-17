@@ -1,8 +1,18 @@
 import UsuarioTypes from '../types/usuario.types';
   
+const usuarioInicial =  {
+    id : '',
+    nombre : '',
+    apellido  : '',
+    pais : '',
+    ciudad : '',
+    createdAt: '',
+    updatedAt: ''
+}
+
 const initialState = {
     usuarios: [ ],
-    usuarioSeleccionado: {  },
+    usuarioSeleccionado: usuarioInicial,
     buscando: false,
     verFormulario: false,
     error: '', 
@@ -22,7 +32,7 @@ function usuario (state = initialState, action) {
         return {
           ...state,
           buscando: true,
-          usuarioSeleccionado: { }
+          usuarioSeleccionado: usuarioInicial
         }
 
       case UsuarioTypes.SELECCIONA_USUARIO:  
@@ -55,16 +65,23 @@ function usuario (state = initialState, action) {
         return {
           ...state,
           usuarios: state.usuarios.filter(usuario => usuario.id !== action.payload),
-          usuarioSeleccionado: {},
+          usuarioSeleccionado: usuarioInicial,
           verFormulario:false,
         }
       
       case UsuarioTypes.CONFECCIONAR_USUARIO:  
         return {
           ...state,
-          usuarioSeleccionado: {},
+          usuarioSeleccionado: usuarioInicial,
           verFormulario: true
         }
+      case UsuarioTypes.AGREGAR_USUARIO:  
+        return {
+          ...state,
+          usuarioSeleccionado: action.payload,
+          verFormulario: false
+        }
+        
       default:
         return state
     }

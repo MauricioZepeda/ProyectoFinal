@@ -20,12 +20,10 @@ export const obtenerUsuarios  = (dispatch) => {
     });
 }
 
-export const seleccionarUsuario  = (dispatch, usuario) => {  
+export const seleccionarUsuario  = (dispatch, usuario) => {    
   dispatch({  
     type: UsuarioTypes.SELECCIONA_USUARIO ,
-    payload: {
-      usuario  
-    }
+    payload: usuario
   }) 
 }
 
@@ -35,20 +33,21 @@ export const editarUsuario  = (dispatch) => {
   }) 
 }
 
-export const crearUsuario  = (dispatch, usuario) => {   
-   
+export const crearUsuario  = (dispatch, usuario) => {    
   axios.post(urlUsuario(),
   {
+    id: usuario.id,
     nombre: usuario.nombre,
     apellido: usuario.apellido,
     pais: usuario.pais,
     ciudad: usuario.ciudad
   })
-    .then(res => {  
+    .then(res => {   
       dispatch({
           type: UsuarioTypes.AGREGAR_USUARIO,
-          payload: usuario 
+          payload: res.data 
       }) 
+      seleccionarUsuario(dispatch, res.data);
       obtenerUsuarios(dispatch);
     }) 
     .catch( error => { 
@@ -71,10 +70,10 @@ export const actualizarUsuario  = (dispatch, usuario) => {
     .then(res => {  
       dispatch({
           type: UsuarioTypes.ACTUALIZAR_USUARIO,
-          payload: usuario 
+          payload: res.data 
       }) 
       obtenerUsuarios(dispatch);
-      seleccionarUsuario(dispatch, usuario);
+      seleccionarUsuario(dispatch, res.data);
     }) 
     .catch( error => { 
       dispatch({ 
