@@ -1,4 +1,3 @@
-const base_url = 'http://localhost:1337/';
+const base_url = 'http://localhost:1337'; 
 
-export const urlUsuario = () => `${ base_url }usuario`;  
-export const urlActualizarUsuario = () => `${ base_url }usuario/actualizarUsuario`;  
+export const urlUsuario = (id='') => `${ base_url }/usuario/${id}`;   

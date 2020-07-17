@@ -1,6 +1,6 @@
 import UsuarioTypes from '../types/usuario.types';
 import axios from 'axios';
-import { urlUsuario, urlActualizarUsuario } from '../../constants';
+import { urlUsuario } from '../../constants';
 
 export const obtenerUsuarios  = (dispatch) => {  
   dispatch({  type: UsuarioTypes.LOADING_USUARIOS })
@@ -20,12 +20,18 @@ export const obtenerUsuarios  = (dispatch) => {
     });
 }
 
-export const seleccionaUsuario  = (dispatch, usuario) => {  
+export const seleccionarUsuario  = (dispatch, usuario) => {  
   dispatch({  
     type: UsuarioTypes.SELECCIONA_USUARIO ,
     payload: {
       usuario  
     }
+  }) 
+}
+
+export const editarUsuario  = (dispatch) => {  
+  dispatch({  
+    type: UsuarioTypes.EDITAR_USUARIO 
   }) 
 }
 
@@ -40,7 +46,7 @@ export const crearUsuario  = (dispatch, usuario) => {
   })
     .then(res => {  
       dispatch({
-          type: UsuarioTypes.AGREGAR_USAURIO,
+          type: UsuarioTypes.AGREGAR_USUARIO,
           payload: usuario 
       }) 
       obtenerUsuarios(dispatch);
@@ -53,9 +59,8 @@ export const crearUsuario  = (dispatch, usuario) => {
     });
 }
 
-
 export const actualizarUsuario  = (dispatch, usuario) => {    
-  axios.post(urlActualizarUsuario(),
+  axios.put(urlUsuario(usuario.id),
   {
     id: usuario.id,
     nombre: usuario.nombre,
@@ -69,6 +74,7 @@ export const actualizarUsuario  = (dispatch, usuario) => {
           payload: usuario 
       }) 
       obtenerUsuarios(dispatch);
+      seleccionarUsuario(dispatch, usuario);
     }) 
     .catch( error => { 
       dispatch({ 
@@ -78,4 +84,26 @@ export const actualizarUsuario  = (dispatch, usuario) => {
     });
 }
 
- 
+export const eliminarUsuario   = (dispatch, id) => {  
+  axios.delete(urlUsuario(id))
+    .then(res => {  
+      dispatch({
+          type: UsuarioTypes.ELIMINAR_USUARIO,
+          payload: id
+      }) 
+      obtenerUsuarios(dispatch); 
+    }) 
+    .catch( error => { 
+      dispatch({ 
+          type: UsuarioTypes.ERROR_USUARIO,
+          payload: error.message  
+        });
+    });
+}
+
+export const confeccionarUsuario  = (dispatch, usuario) => {  
+  dispatch({  
+    type: UsuarioTypes.CONFECCIONAR_USUARIO,
+    payload: usuario
+  }) 
+}

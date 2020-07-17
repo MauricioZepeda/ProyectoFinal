@@ -2,11 +2,11 @@ import React from 'react';
 
 // REDUX
 import { connect } from 'react-redux';
-import { seleccionaUsuario } from '../../redux/actions/usuario.actions';
+import { seleccionarUsuario } from '../../redux/actions/usuario.actions';
 
-const Usuario = ({ usuario, seleccionaUsuario }) => {
+const Usuario = ({ usuario, seleccionarUsuario }) => {
     return (  
-        <li className="list-group-item" onClick={ () => seleccionaUsuario(usuario) } >{usuario.nombre} - {usuario.apellido}</li>
+        <li className="list-group-item" onClick={ () => seleccionarUsuario(usuario) } >{usuario.nombre} - {usuario.apellido}</li>
     );
 }
    
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return { 
-        seleccionaUsuario: (usuario) => seleccionaUsuario(dispatch, usuario)
+        seleccionarUsuario: (usuario) => seleccionarUsuario(dispatch, usuario)
     }
 }
 
