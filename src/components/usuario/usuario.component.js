@@ -30,8 +30,8 @@ const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario }) => {
                             <h5>{usuario.ciudad}</h5>
                         </div>
                         <div className="col-5 d-flex flex-column">
-                            <small><label className="text-success">Creado</label> <Moment date={fechaCreacion} format="DD/MM/YYYY" /></small>
-                            { (fechaCreacion !== fechaModificacion) && <small><label className="text-danger pr-1">Modificado </label><Moment date={fechaModificacion} format="DD/MM/YYYY" /></small>}
+                            <small><label className="text-success">Creado </label> <Moment date={fechaCreacion} format="DD/MM/YYYY" /></small>
+                            { (fechaCreacion !== fechaModificacion) && <small><label className="text-danger pr-1">Editado </label><Moment date={fechaModificacion} format="DD/MM/YYYY" /></small>}
                         </div>
                     </div>
                 </div>

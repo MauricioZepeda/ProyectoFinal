@@ -31,8 +31,7 @@ function usuario (state = initialState, action) {
       case UsuarioTypes.LOADING_USUARIOS:
         return {
           ...state,
-          buscando: true,
-          usuarioSeleccionado: usuarioInicial
+          buscando: true
         }
 
       case UsuarioTypes.SELECCIONA_USUARIO:  

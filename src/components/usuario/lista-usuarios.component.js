@@ -7,9 +7,8 @@ import { confeccionarUsuario } from '../../redux/actions/usuario.actions';
 
 const ListaUsuarios = ({usuarios, confeccionarUsuario}) => { 
     return ( 
-        <div className="container"> 
-
-            <div className="row mt-5 pb-3">
+        <div>  
+            <div className="row">
                 <div className="col-10">
                     <h1><i className="fas fa-users pr-2"></i>Usuarios ingresados</h1>    
                 </div>

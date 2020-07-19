@@ -18,12 +18,12 @@ const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuari
     },[usuarioSeleccionado])
     
     const establecerUsuario = (usuarioDesplegar) => { 
-            const { id, nombre, apellido, pais, ciudad } = usuarioDesplegar; 
-            setId(id);
-            setNombre(nombre);
-            setApellido(apellido);
-            setPais(pais);
-            setCiudad(ciudad);   
+        const { id, nombre, apellido, pais, ciudad } = usuarioDesplegar; 
+        setId(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setPais(pais);
+        setCiudad(ciudad);   
     }
 
     const formik = useFormik({
@@ -38,7 +38,7 @@ const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuari
             nombre: Yup.string().required("El nombre es obligatorio"),
             apellido: Yup.string().required("El apellido es olbigatorio"),
         }), 
-        onSubmit: (formData) => { 
+        onSubmit: (formData) => {  
             const { nombre, apellido, pais, ciudad} = formData
             let usuario = {
                 nombre,
@@ -61,60 +61,86 @@ const FormularioUsuario = ({ usuarioSeleccionado, crearUsuario, actualizarUsuari
     const handlerCancelar = () => { 
         seleccionarUsuario(usuarioSeleccionado);
     }
-
+    const titulo = () => {
+        return(
+            <h1>                                      
+                <label className="h1" >
+                    { (id === '') 
+                        ? <div><i className="fas fa-user-plus pr-2"></i> Nuevo usuario</div> 
+                        : <div><i className="fas fa-user-edit pr-2"></i> Editando a {nombre}</div>  
+                    }
+                </label>
+            </h1>
+        )
+    }
     return ( 
-        <div className="container mt-3">
-            <label className="h2" >{ (id === '') ? "Nuevo usuario" : "Editar Usuario" }</label>
-            <form onSubmit={formik.handleSubmit}>
-                <div className="mb-3">
-                    <label className="form-label">Nombre</label>
-                    <label className="text-danger pl-2">{ formik.errors.nombre}</label>
-                    <input  
-                        type="text" 
-                        className="form-control" 
-                        name="nombre" 
-                        autoComplete="off"
-                        onChange={formik.handleChange}  
-                        value={formik.values.nombre} 
-                    /> 
+        <div> 
+            <div className="row">
+                <div className="col-12">
+                    { titulo() }
                 </div>
-                <div className="mb-3">
-                    <label className="form-label">Apellido </label> 
-                    <label className="text-danger pl-2">{ formik.errors.apellido}</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        name="apellido" 
-                        autoComplete="off"
-                        onChange={formik.handleChange} 
-                        value={formik.values.apellido} 
-                    />
-                </div> 
-                <div className="mb-3">
-                    <label className="form-label">País </label>  
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        name="pais" 
-                        autoComplete="off"
-                        onChange={formik.handleChange} 
-                        value={formik.values.pais} 
-                    />
-                </div> 
-                <div className="mb-3">
-                    <label className="form-label">Ciudad</label>  
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        name="ciudad" 
-                        autoComplete="off"
-                        onChange={formik.handleChange} 
-                        value={formik.values.ciudad} 
-                    />
-                </div> 
-                <button  className="btn btn-danger" onClick={handlerCancelar}>Cancelar</button>
-                <button  className="btn btn-primary ml-3">Guardar</button>
-            </form>
+            </div>
+ 
+            <div className="row">
+                <div className="col-12">
+                    <div className="card shadow">
+                        <div className="card-body"> 
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className="mb-3">
+                                    <label className="form-label h5">Nombre</label>
+                                    <label className="text-danger pl-2">{ formik.errors.nombre}</label>
+                                    <input  
+                                        type="text" 
+                                        className="form-control form-control-lg" 
+                                        name="nombre" 
+                                        autoComplete="off"
+                                        onChange={formik.handleChange}  
+                                        value={formik.values.nombre} 
+                                    /> 
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label h5">Apellido </label> 
+                                    <label className="text-danger pl-2">{ formik.errors.apellido}</label>
+                                    <input 
+                                        type="text" 
+                                        className="form-control form-control-lg" 
+                                        name="apellido" 
+                                        autoComplete="off"
+                                        onChange={formik.handleChange} 
+                                        value={formik.values.apellido} 
+                                    />
+                                </div> 
+                                <div className="mb-3">
+                                    <label className="form-label h5">País </label>  
+                                    <input 
+                                        type="text" 
+                                        className="form-control form-control-lg" 
+                                        name="pais" 
+                                        autoComplete="off"
+                                        onChange={formik.handleChange} 
+                                        value={formik.values.pais} 
+                                    />
+                                </div> 
+                                <div className="mb-3">
+                                    <label className="form-label h5">Ciudad</label>  
+                                    <input 
+                                        type="text" 
+                                        className="form-control form-control-lg" 
+                                        name="ciudad" 
+                                        autoComplete="off"
+                                        onChange={formik.handleChange} 
+                                        value={formik.values.ciudad} 
+                                    />
+                                </div> 
+                                <div className="py-2 d-flex justify-content-evenly">
+                                    <button  className="btn btn-danger shadow" onClick={handlerCancelar}><i className="fas fa-times"></i> Cancelar</button>
+                                    <button  type="submit" className="btn btn-primary shadow ml-3"> <i className="fas fa-check"></i> { (id === '') ? "Crear usuario" : "Guardar cambios" } </button>                     
+                                </div> 
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div> 
     );
 }

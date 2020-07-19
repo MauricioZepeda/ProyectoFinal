@@ -1,4 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'; 
+
+import Moment from 'react-moment';
+import moment from 'moment/min/moment-with-locales';
 
 // REDUX
 import { connect } from 'react-redux';
@@ -12,7 +15,9 @@ import { SyncLoader } from 'react-spinners';
 
 const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtenerUsuarios}) => {  
     useEffect(()=>{
-        obtenerUsuarios()
+        Moment.globalMoment = moment;
+        Moment.globalLocale = 'es';
+        obtenerUsuarios();
     },[])
     
     if (buscando) {
@@ -20,18 +25,18 @@ const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtene
     }
     
     return (        
-        <section className="container">  
-            <div className="d-flex justify-content-between"> 
+        <div className="container pt-5" >  
+            <div className="row">  
                 <div className="col-6"> 
                     <ListaUsuarios
                         usuarios={usuarios}  
                     />  
                 </div>  
                 <div className="col-6"> 
-                { verFormulario ? <FormularioUsuario /> : (usuarioSeleccionado.id !== '') ? <VerUsuario /> : "" }
-                </div>      
+                    { verFormulario ? <FormularioUsuario /> : (usuarioSeleccionado.id !== '') ? <VerUsuario /> : "" }
+                </div>     
             </div> 
-        </section>  
+        </div>  
     )
 }
  
@@ -47,7 +52,7 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return { 
-        obtenerUsuarios: ( ) => obtenerUsuarios(dispatch)
+        obtenerUsuarios: ( ) => obtenerUsuarios(dispatch, ()=>console.log('okkkk'))
     }
 }
 
