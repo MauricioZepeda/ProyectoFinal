@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 // REDUX
 import { connect } from 'react-redux';
 import { seleccionarUsuario } from '../../redux/actions/usuario.actions';
+import { urlBanderas } from '../../constants';
 
 const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario, listaBanderas }) => {  
     const activo = (usuarioSeleccionado.id === usuario.id) ? " active" : "" ;

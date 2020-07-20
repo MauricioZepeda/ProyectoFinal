@@ -8,12 +8,9 @@ import Imagenes from '../components/settings/imagenes.component';
  
 const Settings = () => {   
     return (        
-        <div className="container" >  
-            <div className="row">  
-                <div className="col-6"> 
-                    <label className="h1 text-success">HOLA!</label>
-                </div>
-                <div className="col-6"> 
+        <div className="container pt-5" >  
+            <div className="row">   
+                <div className="col-6 offset-2"> 
                     <Imagenes />
                 </div>
             </div>  
