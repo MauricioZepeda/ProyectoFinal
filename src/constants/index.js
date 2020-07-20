@@ -6,6 +6,9 @@ const end_point_usuario = 'usuario';
 const weather_url = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const api_key_weather = 'c272d7c335cc451f9e90d12485a42f0b';
 //------------------------------------------
+//   BANDERAS
+const banderas_url = 'https://restcountries.eu/rest/v2/all';
+//------------------------------------------
 //   TERRITORIO API
 // API KEYS
 const application_key_territorio = 'MTeT7dLwsT9yRwPRdq0fubJbVasA1nv19uRCPhjx';
@@ -26,7 +29,8 @@ const orden_regiones = '&order=Subdivision_Name';
 //------------------------------------------
 
 export const cabeceraTerritorio = () => ({ headers: {'X-Parse-Application-Id': application_key_territorio, 'X-Parse-REST-API-Key': api_key_territorio }});
-export const urlUsuario = (id='') => `${ base_url }/${ end_point_usuario }/${id}`;    
+export const urlUsuario = (id='') => `${ base_url }/${ end_point_usuario }/${id}`; 
+export const urlBanderas = () => `${ banderas_url }`; 
 //export const urlWeather = (ciudad = 'london') => `${ weather_url }=${ciudad}&appid=${api_key_weather}`;  
 export const urlPaises = () => `${ base_territorio_url }${end_point_paises}${ cantidad_registros }${orden_paises}`;
 export const urlRegiones = (countryCode) => (`${ base_territorio_url }${end_point_regiones}${ cantidad_registros }${orden_regiones}${condicion}${ JSON.stringify({ "Country_Code": countryCode })}`);

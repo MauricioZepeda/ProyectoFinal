@@ -12,7 +12,7 @@ function territorio (state = initialState, action) {
       case TerritorioTypes.OBTENER_PAISES:
         return {
           ...state,
-          paises: action.payload.map(pais => ({ value: pais.code , label: `${pais.emoji}  ${pais.name}` }) ),
+          paises: action.payload.map(pais => ({ value: pais.code , label: pais.name }) ),
           buscandoPaises: false,
           error: ''
         }  

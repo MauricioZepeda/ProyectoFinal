@@ -5,9 +5,9 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { editarUsuario, eliminarUsuario } from '../../redux/actions/usuario.actions';
 
-const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
+const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario, listaBanderas}) => {
     const { nombre, apellido, pais, ciudad, createdAt,updatedAt } = usuarioSeleccionado;
-    
+    const banderaImagen = listaBanderas.find(bandera =>  bandera.code === usuarioSeleccionado.pais);
     return (
       <div>
         <div className="row">
@@ -49,7 +49,7 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
                   </div>
                   <div className="col-12 border-bottom mb-3" hidden={ pais === '' }>
                     <h5> País </h5>
-                    <h3 className="pl-4"> {pais} </h3>
+                    <h3 className="pl-4"> {banderaImagen.nombre} </h3>
                   </div>
                   <div className="col-12 border-bottom mb-3" hidden={ ciudad === '' }>
                     <h5> Ciudad </h5>
@@ -72,9 +72,11 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
     );
 }
  
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => { 
+  const { usuario, banderas } = state;
     return { 
-        usuarioSeleccionado : state.usuario.usuarioSeleccionado
+        usuarioSeleccionado : usuario.usuarioSeleccionado,
+        listaBanderas: banderas.listaBanderas 
     }
 }
 

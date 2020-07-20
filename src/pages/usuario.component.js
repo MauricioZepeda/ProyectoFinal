@@ -7,6 +7,7 @@ import moment from 'moment/min/moment-with-locales';
 import { connect } from 'react-redux';
 import { obtenerUsuarios } from '../redux/actions/usuario.actions';
 import { obtenerPaises } from '../redux/actions/territorio.actions';
+import { obtenerBanderas } from '../redux/actions/banderas.actions';
 
 //COMPONENTES
 import ListaUsuarios from '../components/usuario/lista-usuarios.component';
@@ -14,15 +15,16 @@ import FormularioUsuario from '../components/usuario/formulario-usuario.componen
 import VerUsuario from '../components/usuario/ver-usuario.component';
 import { SyncLoader } from 'react-spinners';
  
-const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtenerUsuarios, obtenerPaises}) => {  
+const Usuario = ({usuarios, buscandoUsuarios, buscandoBanderas, buscandoPaises, verFormulario, usuarioSeleccionado, obtenerUsuarios, obtenerPaises, obtenerBanderas}) => {  
     useEffect(()=>{
         Moment.globalMoment = moment;
         Moment.globalLocale = 'es';
         obtenerUsuarios();
         obtenerPaises();
+        obtenerBanderas();
     },[])
      
-    if (buscando) {
+    if (buscandoUsuarios || buscandoBanderas || buscandoPaises) {
         return  <div className="text-center pt-5"> <SyncLoader /> </div>
     }
 
@@ -70,11 +72,15 @@ const Usuario = ({usuarios, buscando, verFormulario, usuarioSeleccionado, obtene
 }
  
 const mapStateToProps = (state) => {
-    const { usuarios, buscando, verFormulario, usuarioSeleccionado } = state.usuario;    
+    const { usuarios, buscandoUsuarios, verFormulario, usuarioSeleccionado } = state.usuario;    
+    const { buscandoPaises } = state.territorio;    
+    const {  buscandoBanderas } = state.banderas;    
 
     return { 
-        usuarios,           
-        buscando,
+        usuarios,       
+        buscandoUsuarios,   
+        buscandoBanderas,
+        buscandoPaises,
         verFormulario,
         usuarioSeleccionado
     }
@@ -83,7 +89,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
         obtenerUsuarios: () => obtenerUsuarios(dispatch),
-        obtenerPaises: () => obtenerPaises(dispatch)
+        obtenerPaises: () => obtenerPaises(dispatch),
+        obtenerBanderas: () => obtenerBanderas(dispatch)
     }
 }
 

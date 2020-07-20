@@ -13,7 +13,7 @@ const Navbar = () => {
                 </div>
                 <div className="col-6 text-right">
                   <Link to="/settings">
-                    <label className="h2 link"><i class="fas fa-cog fa-spin mt-1"></i></label>
+                    <label className="h2 link"><i className="fas fa-cog fa-spin mt-1"></i></label>
                   </Link>
                 </div>
             </div>

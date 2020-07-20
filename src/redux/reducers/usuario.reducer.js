@@ -13,7 +13,7 @@ const usuarioInicial =  {
 const initialState = {
     usuarios: [ ],
     usuarioSeleccionado: usuarioInicial,
-    buscando: false,
+    buscandoUsuarios: false,
     verFormulario: false,
     error: '', 
   }
@@ -24,14 +24,14 @@ function usuario (state = initialState, action) {
         return {
           ...state,
           usuarios: action.payload,
-          buscando: false,
+          buscandoUsuarios: false,
           error: ''
         }  
 
       case UsuarioTypes.LOADING_USUARIOS:
         return {
           ...state,
-          buscando: true
+          buscandoUsuarios: true
         }
 
       case UsuarioTypes.SELECCIONA_USUARIO:  

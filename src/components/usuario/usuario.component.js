@@ -5,19 +5,20 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { seleccionarUsuario } from '../../redux/actions/usuario.actions';
 
-const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario }) => {  
+const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario, listaBanderas }) => {  
     const activo = (usuarioSeleccionado.id === usuario.id) ? " active" : "" ;
     const fechaCreacion = usuario.createdAt;
     const fechaModificacion = usuario.updatedAt;
-    const bandera = usuario.pais.split(' ')[0];
+    const banderaImagen = listaBanderas.find(bandera =>  bandera.code === usuario.pais);
+ 
     return (  
         <a href="#!" 
             onClick={ () => seleccionarUsuario(usuario) }
             className={ `list-group-item list-group-item-action flex-column align-items-start pb-0 ${activo}` }
         > 
             <div className="row">
-                <div className="col-2 pt-0 tb-0">
-                    <label style={ { fontSize:'70px', marginTop:'5px'} }> {bandera}</label>
+                <div className="col-2 d-flex align-items-center"> 
+                    <img src={banderaImagen.flag} width="80" height="60" className="rounded border border-dark img-fluid" alt={banderaImagen.nombre}></img>
                 </div>
                 <div className="col-10">
                     <div className="row">
@@ -27,8 +28,8 @@ const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario }) => {
                     </div>
                     <div className="row">
                         <div className="col-8 d-flex flex-column">
-                            <h5>País: {usuario.pais.replace(bandera,'') }</h5>
-                            <h5 hidden={usuario.ciudad === ''}>Ciudad: {usuario.ciudad}</h5>
+                            <h5>País: { banderaImagen.nombre }</h5>
+                            <h5>Ciudad: {(usuario.ciudad === '') ? "No ingresada" : usuario.ciudad}</h5>
                         </div>
                         <div className="col-4 d-flex flex-column">
                             <small><label className="text-success">Creado </label> <Moment date={fechaCreacion} format="DD/MM/YYYY" /></small>
@@ -42,8 +43,10 @@ const Usuario = ({ usuario, usuarioSeleccionado, seleccionarUsuario }) => {
 }
    
 const mapStateToProps = (state) => {
+    const { usuario, banderas } = state;
     return { 
-        usuarioSeleccionado : state.usuario.usuarioSeleccionado
+        usuarioSeleccionado : usuario.usuarioSeleccionado,
+        listaBanderas: banderas.listaBanderas 
     }
 }
   

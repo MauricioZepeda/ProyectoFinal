@@ -36,7 +36,7 @@ const FormularioUsuario = ({ usuarios, usuarioSeleccionado, crearUsuario, actual
             setApellido(apellido);
             setPais(pais);
             setCiudad(ciudad);             
-            setPaisSeleccionado(paises.find(p => p.label === pais));
+            setPaisSeleccionado(paises.find(p => p.value === pais));
     },[usuarioSeleccionado]) 
 
     const formik = useFormik({
@@ -53,11 +53,11 @@ const FormularioUsuario = ({ usuarios, usuarioSeleccionado, crearUsuario, actual
             pais: Yup.string().required("El país es olbigatorio"),
         }), 
         onSubmit: (formData) => {  
-            const { nombre, apellido, pais, ciudad} = formData
+            const { nombre, apellido, ciudad} = formData
             let usuario = {
                 nombre,
                 apellido,
-                pais,
+                pais: paisSeleccionado.value ,
                 ciudad
             } 
             if(id === '') {
