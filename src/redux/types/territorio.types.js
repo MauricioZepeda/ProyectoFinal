@@ -1,0 +1,10 @@
+const TerritorioTypes = {
+    OBTENER_PAISES : 'OBTENER_PAISES',
+    LOADING_PAISES : 'LOADING_PAISES',
+    OBTENER_REGIONES : 'OBTENER_REGIONES',
+    LOADING_REGIONES : 'LOADING_REGIONES',
+    ERROR_TERRITORIO : 'ERROR_TERRITORIO' 
+  };
+  
+  export default TerritorioTypes;
+  

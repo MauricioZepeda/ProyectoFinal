@@ -1,10 +1,18 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&display=swap');  
+
 
 body {
     font-family:  'Baloo Thambi 2', cursive ;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .active{
     background-color:  rgb(191, 192, 160) !important;
+}
+ 
+.link{
+    cursor: pointer;
 }

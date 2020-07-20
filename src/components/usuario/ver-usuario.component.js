@@ -41,11 +41,11 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
                 <div className="row">
                   <div className="col-12 border-bottom mb-3">
                     <h5> Nombre </h5>
-                    <h3 className="pl-4"> { nombre } </h3>
+                    <h3 className="pl-4 text-capitalize"> { nombre } </h3>
                   </div>
                   <div className="col-12 border-bottom mb-3" hidden={ apellido === '' }>
                     <h5> Apellido </h5>
-                    <h3 className="pl-4"> { apellido } </h3>
+                    <h3 className="pl-4 text-capitalize"> { apellido } </h3>
                   </div>
                   <div className="col-12 border-bottom mb-3" hidden={ pais === '' }>
                     <h5> País </h5>
@@ -53,7 +53,7 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
                   </div>
                   <div className="col-12 border-bottom mb-3" hidden={ ciudad === '' }>
                     <h5> Ciudad </h5>
-                    <h3 className="pl-4"> { ciudad } </h3>
+                    <h3 className="pl-4 text-capitalize"> { ciudad } </h3>
                   </div>
                   <div className="col-12">
                     <h5 className="text-success"> Creado el </h5>
@@ -61,7 +61,7 @@ const VerUsuario = ({usuarioSeleccionado, editarUsuario, eliminarUsuario}) => {
                   </div>
                   <div className="col-12 border-top pt-3" hidden={ updatedAt === createdAt }>
                     <h5 className="text-danger"> Última modificación hace</h5>
-                    <h3 className="pl-4"> <Moment date={ updatedAt } fromNow ago /></h3>
+                    <h3 className="pl-4 text-capitalize"> <Moment date={ updatedAt } fromNow ago /></h3>
                   </div>
                 </div>
               </div>
@@ -84,6 +84,9 @@ const mapDispatchToProps = (dispatch) => {
         eliminarUsuario: (usuario) => eliminarUsuario(dispatch, usuario)
     }
 } 
+
+
+VerUsuario.displayName = 'VerUsuario';
 
 export default connect(
     mapStateToProps,

@@ -36,6 +36,9 @@ const mapDispatchToProps = (dispatch) => {
     }
 } 
 
+
+ListaUsuarios.displayName = 'ListaUsuarios';
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { SyncLoader } from 'react-spinners';
 
-//Pages 
-import Usuario from './pages/usuario/usuario.component';
+import Navbar from './components/commons/navbar.component'; 
+import NotFound from './components/commons/notfound.component';
+import Usuario from './pages/usuario.component';
+import Settings from './pages/settings.component';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path='/' component={Usuario} /> 
-    </Switch>
+    <Suspense fallback={(<SyncLoader />)}> 
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Usuario} /> 
+          <Route path='/settings' component={Settings} /> 
+          <Route component={NotFound} />
+        </Switch>  
+    </Suspense>
   );
 }
 
