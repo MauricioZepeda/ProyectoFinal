@@ -3,11 +3,9 @@ import { SyncLoader } from 'react-spinners';
 
 // REDUX
 import { connect } from 'react-redux';
-import { obtenerClimaActual } from '../../redux/actions/clima.actions';
+import { obtenerClimaActual } from '../../redux/actions/clima.actions'; 
 
-const transformaCelcius = kelvin => ((parseFloat(kelvin)-32) / 1.8);
-
-const Clima = ({obtenerClimaActual, ciudad, condicion, pronostico, viento, codigo, listaBanderas, buscandoClima, buscandoBanderas }) => {
+const Clima = ({obtenerClimaActual, ciudad, condicion, pronostico, viento, codigo, listaBanderas, buscandoClima, buscandoBanderas, error}) => {
   const [coordenadas, setCoordenadas] = useState({
     latitud: null,
     longitud: null,
@@ -31,9 +29,13 @@ const Clima = ({obtenerClimaActual, ciudad, condicion, pronostico, viento, codig
     obtenerClimaActual(coordenadas.latitud, coordenadas.longitud);
   },[coordenadas])
 
-  if (buscandoClima && buscandoBanderas) return <SyncLoader />
-   const banderaImagen = listaBanderas.find(bandera =>  bandera.code === codigo);
-   console.log(banderaImagen);
+  if (buscandoClima && buscandoBanderas) return <SyncLoader />  
+  const banderaImagen = listaBanderas.find(bandera =>  bandera.code === codigo);
+
+  if(error!==''){
+    return <div className="d-flex flex-row justify-content-end"><h3 className="pt-2">Sin información del clima <i class="far fa-frown-open"></i> </h3></div>
+  }
+  
   return(
     <div className="d-flex flex-row justify-content-end">
       <div className="d-flex flex-column">
@@ -51,7 +53,7 @@ const Clima = ({obtenerClimaActual, ciudad, condicion, pronostico, viento, codig
 
 const mapStateToProps = (state) => {
   const { ciudad, condicion, pronostico, viento, codigo, buscandoClima } = state.clima;
-  const { listaBanderas, buscandoBanderas } = state.banderas;
+  const { listaBanderas, buscandoBanderas,error } = state.banderas;
   return {
     ciudad,
     condicion,
@@ -60,7 +62,8 @@ const mapStateToProps = (state) => {
     codigo,
     buscandoClima,
     listaBanderas,
-    buscandoBanderas
+    buscandoBanderas,
+    error
   }
 }
 
