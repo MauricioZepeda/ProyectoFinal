@@ -30,5 +30,5 @@ Y disfrutar :satisfied:
 
 
 ## BUG'S :disappointed_relieved:
-En produccion no despliega el la información del clima ya que no se configuró el https al bucket S3 (por seguridad no da la opcion de preguntar al usuario por la geolocalización) <br/>
+En produccion no despliega la información del clima ya que no se configuró el https al bucket S3 (por seguridad no da la opcion de preguntar al usuario por la geolocalización) <br/>
 En desarrollo funciona sin problemas (Segir pasos anteriores para desplegar en desarrollo)
