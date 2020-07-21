@@ -12,8 +12,7 @@ export const obtenerPaises  = (dispatch) => {
                 payload: res.data.results
             })
         })
-        .catch( error => { 
-            console.log(error.message);
+        .catch( error => {  
             dispatch({ 
                 type: TerritorioTypes.ERROR_TERRITORIO,
                 payload: error.message  
@@ -31,8 +30,7 @@ export const obtenerRegiones  = (dispatch, countryCode) => {
                 payload: res.data.results
             })
         })
-        .catch( error => { 
-            console.log(error.message);
+        .catch( error => {  
             dispatch({ 
                 type: TerritorioTypes.ERROR_TERRITORIO,
                 payload: error.message  

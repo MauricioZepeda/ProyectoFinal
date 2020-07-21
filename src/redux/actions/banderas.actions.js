@@ -13,8 +13,7 @@ export const obtenerBanderas  = (dispatch) => {
                 payload: res.data
             })
         })
-        .catch( error => { 
-            console.log(error.message);
+        .catch( error => {  
             dispatch({ 
                 type: BanderasTypes.ERROR_BANDERAS,
                 payload: error.message  
