@@ -52,8 +52,8 @@ const Clima = ({obtenerClimaActual, ciudad, condicion, pronostico, viento, codig
 }
 
 const mapStateToProps = (state) => {
-  const { ciudad, condicion, pronostico, viento, codigo, buscandoClima } = state.clima;
-  const { listaBanderas, buscandoBanderas,error } = state.banderas;
+  const { ciudad, condicion, pronostico, viento, codigo, buscandoClima, error } = state.clima;
+  const { listaBanderas, buscandoBanderas } = state.banderas;
   return {
     ciudad,
     condicion,
